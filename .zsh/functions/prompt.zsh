@@ -1,6 +1,6 @@
 # プロンプト指定
 PROMPT="
-[%n] %{${fg[yellow]}%}%~%{${reset_color}%}
+[%n@%m] %{${fg[yellow]}%}%~%{${reset_color}%}
 %(?.%{$fg[green]%}.%{$fg[blue]%})%(?!(๑˃̵ᴗ˂̵)و <!(*;-;%)? <)%{${reset_color}%} "
 
 # プロンプト指定(コマンドの続き)
