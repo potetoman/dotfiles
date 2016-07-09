@@ -16,7 +16,7 @@ alias cnt='LC_ALL=C.UTF-8 sort | LC_ALL=C.UTF-8 uniq -c | LC_ALL=C.UTF-8 sort -r
 alias vi="vim"
 
 # Global aliases
-alias -g cd='cd $1; ls'
+alias -g cd=cd "$@" && ls
 alias -g N=" >/dev/null 2>&1"
 alias -g N1=" >/dev/null"
 alias -g N2=" 2>/dev/null"
@@ -26,3 +26,11 @@ alias tmux="TERM=xterm-256color tmux"
 alias 2server="ssh -p 2022 shota-s@cocoa.cl.ecei.tohoku.ac.jp"
 alias build_ipython="autossh -M 20012 -p 2022 shota-s@cocoa.cl.ecei.tohoku.ac.jp -L 12000:192.168.100.160:8282 -f -N &"
 alias neomecab="mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/"
+
+# custom
+function cdls() {
+    # cdがaliasでループするので\をつける
+    \cd $1;
+    ls;
+}
+alias cd=cdls

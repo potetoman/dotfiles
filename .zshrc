@@ -25,7 +25,7 @@ function loadlib() {
 }
 
 loadlib ${HOME}"/.zsh/functions/prompt.zsh"
-loadlib ${HOME}"/.zsh/functions/aliases.zsh"
+loadlib ${HOME}"/.zsh/functions/aliase.zsh"
 loadlib ${HOME}"/.zsh/functions/setopts.zsh"
 loadlib ${HOME}"/.zsh/functions/exports.zsh"
 loadlib ${HOME}"/.zsh/functions/misc.zsh"
