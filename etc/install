@@ -138,13 +138,13 @@ initialize() {
 
 ### Environment valuable
 DOTFILES=~/.dotfiles; export DOTFILES
-GITHUB_DOTFILES="https://github.com/b4b4r07/dotfiles.git"; export GITHUB_DOTFILES
+GITHUB_DOTFILES="https://github.com/potetoman/dotfiles.git"; export GITHUB_DOTFILES
 
 dotfiles_download() {
     e_header "Downloading dotfiles..."
     [ "$DEBUG" = 1 ] && return 0
 
-    local tarball="https://github.com/b4b4r07/dotfiles/archive/master.tar.gz"
+    local tarball="https://github.com/potetoman/dotfiles.git"
     #local zipball="https://github.com/b4b4r07/dotfiles/archive/master.zip"
 
     ### Check if $DOTFILES exists
@@ -246,7 +246,7 @@ cat <<-'EOT'
  \__,_|\___/ \__|_| |_|_|\___||___/ 
 
 *** WHAT'S INSIDE? ***
-  1. Download https://github.com/b4b4r07/dotfiles.git
+  1. Download https://github.com/potetoman/dotfiles.git
   2. Symlinking dot files to your home directory
   3. Execute all sh files within 'etc/init/` (optional)
 
