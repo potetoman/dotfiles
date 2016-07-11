@@ -1,9 +1,8 @@
 # vim path
-export PATH=/usr/local/bin:$PATH
+export PATH="$PATH:/usr/local/bin"
 
 # server mecab path
-export PATH=/opt/local/bin:$PATH
-export PATH=/opt/local/lib:$PATH
+export PATH="$PATH:/opt/local/bin:/opt/local/lib"
+#
 # lsコマンド時、自動で色がつく(ls -Gのようなもの？)
-
 export CLICOLOR=true
