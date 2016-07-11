@@ -12,13 +12,8 @@ export CUDA_PATH=/usr/local/cuda
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 # server mecab path
-export PATH=/opt/local/bin:$PATH
-
-export PATH=/opt/local/lib:$PATH
-
-# lsコマンド時、自動で色がつく(ls -Gのようなもの？)
->>>>>>> add mecab lib path
-
+export PATH="$PATH:/opt/local/bin:/opt/local/lib"
+#
 # lsコマンド時、自動で色がつく(ls -Gのようなもの？)
 export CLICOLOR=true
 
