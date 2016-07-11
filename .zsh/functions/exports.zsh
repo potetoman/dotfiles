@@ -11,12 +11,8 @@ export PATH=/usr/local/cuda/bin:$PATH
 export CUDA_PATH=/usr/local/cuda
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
-# tex path
-export PATH=/Library/Tex/texbin/:$PATH
-
-# coreutils and gnu-sed path !MAC only
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+# server mecab path
+export PATH=/opt/local/bin:$PATH
 
 # lsコマンド時、自動で色がつく(ls -Gのようなもの？)
 export CLICOLOR=true
