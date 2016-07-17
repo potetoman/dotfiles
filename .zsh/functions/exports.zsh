@@ -11,5 +11,8 @@ export PATH=/usr/local/cuda/bin:$PATH
 export CUDA_PATH=/usr/local/cuda
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
+# tex path
+export PATH=/Library/Tex/texbin/:$PATH
+
 # lsコマンド時、自動で色がつく(ls -Gのようなもの？)
 export CLICOLOR=true
