@@ -22,6 +22,8 @@ alias -g sort="LC_ALL=C.UTF-8 sort"
 alias -g uniq="LC_ALL=C.UTF-8 uniq"
 alias -g cd=cdr
 alias -g cd=cdr "$@" && ls
+alias -g sort="LC_ALL=C.UTF-8 sort"
+alias -g uniq="LC_ALL=C.UTF-8 uniq"
 alias -g N=" >/dev/null 2>&1"
 alias -g N1=" >/dev/null"
 alias -g N2=" 2>/dev/null"
