@@ -16,6 +16,8 @@ alias cnt='LC_ALL=C.UTF-8 sort | LC_ALL=C.UTF-8 uniq -c | LC_ALL=C.UTF-8 sort -r
 alias vi="vim"
 
 # Global aliases
+alias -g sort="LC_ALL=C.UTF-8 sort"
+alias -g uniq="LC_ALL=C.UTF-8 uniq"
 alias -g cd=cd "$@" && ls
 alias -g N=" >/dev/null 2>&1"
 alias -g N1=" >/dev/null"
