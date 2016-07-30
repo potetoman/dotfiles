@@ -185,6 +185,7 @@ else
     NeoBundle 'vim-scripts/Align'
     NeoBundle 'vim-scripts/YankRing.vim'
     NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+    NeoBundle 'tpope/vim-fugitive'
     
     "vim color scheme
     "=Neocomplete=
