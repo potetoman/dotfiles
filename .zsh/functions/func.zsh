@@ -40,7 +40,6 @@ fd() {
                   -o -type d -print 2> /dev/null | fzf +m) &&
   cd "$dir"
 }
-
 function peco-select-history() {
     # historyを番号なし、逆順、最初から表示。
     # 順番を保持して重複を削除。
@@ -62,22 +61,3 @@ function peco-cdr () {
 }
 zle -N peco-cdr
 bindkey '^[r' peco-cdr
-=======
-# cf - fuzzy cd from anywhere
-# ex: cf word1 word2 ... (even part of a file name)
-# zsh autoload function
-cf() {
-  local file
-
-  file="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1)"
-
-  if [[ -n $file ]]
-  then
-     if [[ -d $file ]]
-     then
-        cd -- $file
-     else
-        cd -- ${file:h}
-     fi
-  fi
-}
