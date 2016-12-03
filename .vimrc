@@ -126,6 +126,10 @@ endfunction
 nnoremap ; :
 nnoremap : ;
 
+" ノーマルモード時だけ ; と : を入れ替える
+nnoremap ; :
+nnoremap : ;
+
 "=========================
 " Vim settings End
 "=========================
@@ -273,6 +277,8 @@ else
       " gundoと被るため大文字に変更 (2013-06-24 10:00 追記）
       let g:jedi#goto_assighmentd_command = '<Leader>G'
     endfunction
+    "solarized"
+    NeoBundle 'altercation/vim-colors-solarized'
     "Vim-Latex
     NeoBundle "https://github.com/vim-latex/vim-latex.git"
     filetype plugin on
