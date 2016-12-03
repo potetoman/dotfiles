@@ -133,6 +133,10 @@ nnoremap <silent> ,eta :<C-u>EvervimSearchByQuery<SPACE>tag:todo -tag:done<CR>
 let g:evervim_devtoken='S=s540:U=5d38737:E=15566cf842e:C=14e0f1e5538:P=1cd:A=en-devtoken:V=2:H=387585b13c72b381f597d2454a112b34'
 let g:evervim_splitoption=''
 
+" ノーマルモード時だけ ; と : を入れ替える
+nnoremap ; :
+nnoremap : ;
+
 "=========================
 " Vim settings End
 "=========================
@@ -280,6 +284,8 @@ else
       " gundoと被るため大文字に変更 (2013-06-24 10:00 追記）
       let g:jedi#goto_assighmentd_command = '<Leader>G'
     endfunction
+    "solarized"
+    NeoBundle 'altercation/vim-colors-solarized'
     "Vim-Latex
     NeoBundle "https://github.com/vim-latex/vim-latex.git"
     filetype plugin on
