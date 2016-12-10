@@ -1,3 +1,6 @@
+# profiling
+# zmodload zsh/zprof && zprof
+
 # autoload
 autoload -U colors; colors
 autoload -U compinit; compinit
