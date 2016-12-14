@@ -188,6 +188,7 @@ else
     NeoBundle 'tpope/vim-surround'
     NeoBundle 'vim-scripts/Align'
     NeoBundle 'vim-scripts/YankRing.vim'
+    let g:yankring_manual_clipboard_check = 0
     NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
     NeoBundle 'tpope/vim-fugitive'
     
@@ -341,6 +342,18 @@ else
       \ "autoload": {
       \   "unite_sources": ["outline"],
       \ }}
+
+
+    "構文チェッカー
+    NeoBundle 'Flake8-vim'
+    "保存時に自動でチェック
+    let g:PyFlakeOnWrite = 1
+    let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
+    let g:PyFlakeDefaultComplexity=10
+
+    NeoBundle 'scrooloose/syntastic'
+    let g:syntastic_python_checkers = ['pyflakes']
+
 
 
     " インストールされていないプラグインのチェックおよびダウンロード
