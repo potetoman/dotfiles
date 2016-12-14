@@ -10,6 +10,7 @@ alias lc='ls -ltcr'        # Sort by and show change time, most recent last
 alias lu='ls -ltur'        # Sort by and show access time, most recent last
 alias lt='ls -ltr'         # Sort by date, most recent last
 alias lr='ls -lR'          # Recursive ls
+alias shuf='gshuf'
 alias diff='diff -u'
 alias cnt='LC_ALL=C.UTF-8 sort | LC_ALL=C.UTF-8 uniq -c | LC_ALL=C.UTF-8 sort -rn' 
 
