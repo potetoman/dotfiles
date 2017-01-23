@@ -56,6 +56,10 @@ set colorcolumn=80      " その代わり80文字目にラインを入れる
 set t_vb=
 set novisualbell
 
+" Shitf hlで先端or終わり
+noremap <S-h>   ^
+noremap <S-l>   $
+
 " デフォルト不可視文字は美しくないのでUnicodeで綺麗に
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
 
@@ -65,14 +69,6 @@ inoremap jj <Esc>
 
 " ESCを二回押すことでハイライトを消す
 nmap <silent> <Esc><Esc> :nohlsearch<CR>
-
-" 検索後にジャンプした際に検索単語を画面中央に持ってくる
-nnoremap n nzz
-nnoremap N Nzz
-nnoremap * *zz
-nnoremap # #zz
-nnoremap g* g*zz
-nnoremap g# g#zz
 
 " 検索後にジャンプした際に検索単語を画面中央に持ってくる
 nnoremap n nzz
@@ -137,6 +133,9 @@ let g:evervim_splitoption=''
 nnoremap ; :
 nnoremap : ;
 
+" escape2回でhighlight消す
+nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
+
 "=========================
 " Vim settings End
 "=========================
@@ -186,7 +185,6 @@ else
     	\ |   silent! execute 'normal! "_da>'
     	\ | endif 
     NeoBundle 'tpope/vim-surround'
-    NeoBundle 'vim-scripts/Align'
     NeoBundle 'vim-scripts/YankRing.vim'
     let g:yankring_manual_clipboard_check = 0
     NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
@@ -211,13 +209,21 @@ else
         endfunction
     endif
 
-    "NeoComplete 設定
-    " Set minimum syntax keyword length.
-    let g:neocomplete#sources#syntax#min_keyword_length = 3
-    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-    " Plugin key-mappings.
-    inoremap <expr><C-g>     neocomplete#undo_completion()
-    inoremap <expr><C-l>     neocomplete#complete_common_string()
+    " pyenv 処理用に vim-pyenv を追加
+    " Note: depends が指定されているため jedi-vim より後にロードされる（ことを期待）
+    NeoBundleLazy "lambdalisue/vim-pyenv", {
+        \ "depends": ['davidhalter/jedi-vim'],
+        \ "autoload": {
+        \   "filetypes": ["python", "python3", "djangohtml"]
+        \ }}
+
+        "NeoComplete 設定
+        " Set minimum syntax keyword length.
+        let g:neocomplete#sources#syntax#min_keyword_length = 3
+        let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+        " Plugin key-mappings.
+        inoremap <expr><C-g>     neocomplete#undo_completion()
+        inoremap <expr><C-l>     neocomplete#complete_common_string()
 
     " Recommended key-mappings.
     " <CR>: close popup and save indent.
@@ -343,16 +349,18 @@ else
       \   "unite_sources": ["outline"],
       \ }}
 
+    " neomru
+    NeoBundle 'Shougo/neomru.vim'
 
     "構文チェッカー
-    NeoBundle 'Flake8-vim'
-    "保存時に自動でチェック
-    let g:PyFlakeOnWrite = 1
-    let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
-    let g:PyFlakeDefaultComplexity=10
+    " NeoBundle 'Flake8-vim'
+    " "保存時に自動でチェック
+    " let g:PyFlakeOnWrite = 1
+    " let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
+    " let g:PyFlakeDefaultComplexity=10
 
-    NeoBundle 'scrooloose/syntastic'
-    let g:syntastic_python_checkers = ['pyflakes']
+    " NeoBundle 'scrooloose/syntastic'
+    " let g:syntastic_python_checkers = ['pyflakes']
 
 
 
@@ -385,6 +393,7 @@ let g:Powerline_symbols = 'fancy'
 " Always show statusline
 set laststatus=2
 set encoding=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
