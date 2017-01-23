@@ -40,6 +40,7 @@ fd() {
                   -o -type d -print 2> /dev/null | fzf +m) &&
   cd "$dir"
 }
+
 function peco-select-history() {
     # historyを番号なし、逆順、最初から表示。
     # 順番を保持して重複を削除。
