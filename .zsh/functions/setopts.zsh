@@ -19,3 +19,5 @@ setopt ignoreeof
 ## バックグラウンドジョブが終了したらすぐに知らせる。
 setopt no_tify
 
+## 他のシェルのヒストリをリアルタイムで共有する
+setopt share_history 
