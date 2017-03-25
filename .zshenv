@@ -11,9 +11,8 @@ autoload -U compinit; compinit
 # setopt no_global_rcs
 # # Add ~/bin to PATH
 export PATH="/home/shota-s/bin:$PATH"
-export PATH="/home/shota-s/usr/bin:$PATH"
 
 # History file and its size
 export HISTFILE=~/.zsh_history
-export HISTSIZE=10000
-export SAVEHIST=10000
+export HISTSIZE=1000000
+export SAVEHIST=1000000
