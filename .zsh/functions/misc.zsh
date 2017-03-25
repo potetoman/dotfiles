@@ -20,6 +20,7 @@ elif [ $(hostname) = "maitai" ]; then
     source ${PYENV_ROOT}/versions/anaconda-4.0.0/bin/activate chainer_maitai3
     export PYTHONPATH=/home/shota-s/.pyenv/versions/anaconda-4.0.0/envs/chainer_maitai3/lib/python3.5/site-packages
 else
+fi
 
 # cdr settings
 if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
