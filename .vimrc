@@ -393,7 +393,8 @@ let g:Powerline_symbols = 'fancy'
 " Always show statusline
 set laststatus=2
 set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8
+" set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
