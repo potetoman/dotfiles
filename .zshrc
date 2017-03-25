@@ -30,8 +30,3 @@ loadlib ${HOME}"/.zsh/functions/setopts.zsh"
 loadlib ${HOME}"/.zsh/functions/exports.zsh"
 loadlib ${HOME}"/.zsh/functions/misc.zsh"
 loadlib ${HOME}"/.zsh/functions/func.zsh"
-
-# profiling
-# if (which zprof > /dev/null 2>&1) ;then
-#   zprof
-# fi
