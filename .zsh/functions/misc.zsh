@@ -26,4 +26,13 @@ fi
 eval $(gdircolors ~/.dircolors/dircolors-solarized/dircolors.ansi-universal)
 if [ -n "$LS_COLORS" ]; then
     zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+    
+# conda change
+if [ $(hostname) = "gunfire" ]; then
+    source ${PYENV_ROOT}/versions/anaconda-4.0.0/bin/activate chainer_gunfire3
+    export PYTHONPATH=/home/shota-s/.pyenv/versions/anaconda-4.0.0/envs/chainer_gunfire3/lib/python3.5/site-packages
+elif [ $(hostname) = "maitai" ]; then
+    source ${PYENV_ROOT}/versions/anaconda-4.0.0/bin/activate chainer_maitai3
+    export PYTHONPATH=/home/shota-s/.pyenv/versions/anaconda-4.0.0/envs/chainer_maitai3/lib/python3.5/site-packages
+else
 fi
