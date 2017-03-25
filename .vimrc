@@ -2,7 +2,8 @@
 " Vim settings http://lambdalisue.hatenablog.com/entry/2013/06/23/071344
 " ============================
 
-" powerline
+" ruby file path for vim"
+set path+=~/usr/include/
 
 " release autogroup in MyAutoCmd
 augroup MyAutoCmd
@@ -121,17 +122,9 @@ function! s:ChangeCurrentDir(directory, bang)
     endif
 endfunction
 
-"evervim key-bind
-nnoremap <silent> ,el :<C-u>EvervimNotebookList<CR>
-nnoremap <silent> ,eT :<C-u>EvervimListTags<CR>
-nnoremap <silent> ,en :<C-u>EvervimCreateNote<CR>
-nnoremap <silent> ,eb :<C-u>EvervimOpenBrowser<CR>
-nnoremap <silent> ,ec :<C-u>EvervimOpenClient<CR>
-nnoremap ,es :<C-u>EvervimSearchByQuery<SPACE>
-nnoremap <silent> ,et :<C-u>EvervimSearchByQuery<SPACE>tag:todo -tag:done -tag:someday<CR>
-nnoremap <silent> ,eta :<C-u>EvervimSearchByQuery<SPACE>tag:todo -tag:done<CR>
-let g:evervim_devtoken='S=s540:U=5d38737:E=15566cf842e:C=14e0f1e5538:P=1cd:A=en-devtoken:V=2:H=387585b13c72b381f597d2454a112b34'
-let g:evervim_splitoption=''
+" ノーマルモード時だけ ; と : を入れ替える
+nnoremap ; :
+nnoremap : ;
 
 "=========================
 " Vim settings End
@@ -322,9 +315,6 @@ else
         \"Citation %.%# undefined\n".
         \"LaTeX Font Warning: Font shape `%s' undefined\n".
         \"LaTeX Font Warning: Some font shapes were not available, defaults substituted."
-
-    "evervim http://gk9187.hatenablog.com/entry/2014/12/08/175751
-    NeoBundle 'kakkyz81/evervim'
     
     "Unite.vim
     NeoBundleLazy "Shougo/unite.vim", {
