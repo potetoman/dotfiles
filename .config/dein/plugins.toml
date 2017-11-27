@@ -1,0 +1,169 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]] # ステータスライン
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+    let g:lightline = {
+        \ 'colorscheme': 'solorized',
+        \ 'mode_map': {'c': 'NORMAL'},
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+        \ },
+        \ 'component_function': {
+        \   'modified': 'LightlineModified',
+        \   'readonly': 'LightlineReadonly',
+        \   'fugitive': 'LightlineFugitive',
+        \   'filename': 'LightlineFilename',
+        \   'fileformat': 'LightlineFileformat',
+        \   'filetype': 'LightlineFiletype',
+        \   'fileencoding': 'LightlineFileencoding',
+        \   'mode': 'LightlineMode'
+        \ }
+        \ }
+
+    function! LightlineModified()
+        return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+    endfunction
+
+    function! LightlineReadonly()
+        return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+    endfunction
+
+    function! LightlineFilename()
+        return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+            \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+            \  &ft == 'unite' ? unite#get_status_string() :
+            \  &ft == 'vimshell' ? vimshell#get_status_string() :
+            \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+            \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+    endfunction
+
+    function! LightlineFugitive()
+        if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+            return fugitive#head()
+        else
+            return ''
+        endif
+    endfunction
+
+    function! LightlineFileformat()
+        return winwidth(0) > 70 ? &fileformat : ''
+    endfunction
+
+    function! LightlineFiletype()
+        return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    endfunction
+
+    function! LightlineFileencoding()
+        return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+    endfunction
+
+    function! LightlineMode()
+        return winwidth(0) > 60 ? lightline#mode() : ''
+    endfunction
+    let g:lightline = { 
+    \   'colorscheme': 'solarized'
+    \}
+'''
+
+[[plugins]]
+repo = 'taohex/lightline-buffer'
+hook_add = '''
+set hidden  " allow buffer switching without saving
+set showtabline=2  " always show tabline
+
+" use lightline-buffer in lightline
+let g:lightline = {
+    \ 'tabline': {
+        \ 'left': [ [ 'bufferinfo' ], [ 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
+        \ 'right': [ [ 'close' ], ],
+        \ },
+    \ 'component_expand': {
+        \ 'buffercurrent': 'lightline#buffer#buffercurrent2',
+        \ },
+    \ 'component_type': {
+        \ 'buffercurrent': 'tabsel',
+        \ },
+    \ 'component_function': {
+        \ 'bufferbefore': 'lightline#buffer#bufferbefore',
+        \ 'bufferafter': 'lightline#buffer#bufferafter',
+        \ 'bufferinfo': 'lightline#buffer#bufferinfo',
+        \ },
+    \ }
+
+    " remap arrow keys
+    nnoremap <Left> :bprev<CR>
+    nnoremap <Right> :bnext<CR>
+
+    " lightline-buffer ui settings
+    " replace these symbols with ascii characters if your environment does not support unicode
+    let g:lightline_buffer_logo = ' '
+    let g:lightline_buffer_readonly_icon = ''
+    let g:lightline_buffer_modified_icon = '✭'
+    let g:lightline_buffer_git_icon = ' '
+    let g:lightline_buffer_ellipsis_icon = '..'
+    let g:lightline_buffer_expand_left_icon = '◀ '
+    let g:lightline_buffer_expand_right_icon = ' ▶'
+    let g:lightline_buffer_active_buffer_left_icon = ''
+    let g:lightline_buffer_active_buffer_right_icon = ''
+    let g:lightline_buffer_separator_icon = '  '
+
+    " lightline-buffer function settings
+    let g:lightline_buffer_show_bufnr = 1
+    let g:lightline_buffer_rotate = 0
+    let g:lightline_buffer_fname_mod = ':t'
+    let g:lightline_buffer_excludes = ['vimfiler']
+
+    let g:lightline_buffer_maxflen = 30
+    let g:lightline_buffer_maxfextlen = 3
+    let g:lightline_buffer_minflen = 16
+    let g:lightline_buffer_minfextlen = 3
+    let g:lightline_buffer_reservelen = 20
+'''
+
+[[plugins]]
+repo = 'thinca/vim-template'
+hook_add = '''
+    autocmd MyAutoCmd User plugin-template-loaded call s:template_keywords()
+    function! s:template_keywords()
+        silent! %s/<+DATE+>/\=strftime('%Y-%m-%d')/g
+    	silent! %s/<+FILENAME+>/\=expand('%:r')/g
+    endfunction
+    " テンプレート中に含まれる'<+CURSOR+>'にカーソルを移動
+    autocmd MyAutoCmd User plugin-template-loaded
+    	\   if search('<+CURSOR+>')
+    	\ |   silent! execute 'normal! "_da>'
+    	\ | endif 
+    let g:template_basedir = '~/.config'
+    let g:template_free_pattern = 'template'
+'''
+
+[[plugins]] # git
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]] # カーソル位置のコンテキストのftを判定するライブラリ
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]] # カーソル位置のコンテキストに合わせてftを切り替える
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+
+[[plugins]] # solarized
+repo = 'altercation/vim-colors-solarized'
+hook_add = '''
+    set background=dark
+    " colorscheme 設定は source 後に行う必要があるので VimEnter で行う。
+    " 但し Colorscheme イベントの発生が抑制されないよう nented を付ける。
+    let g:solarized_termtrans=1
+    au MyAutoCmd VimEnter * nested colorscheme solarized
+'''
+
+[[plugins]] # resize
+repo = 'simeji/winresizer'
+
+[[plugins]]
+repo = 'Vimjas/vim-python-pep8-indent'
