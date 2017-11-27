@@ -14,7 +14,8 @@ alias shuf='gshuf'
 alias diff='diff -u'
 alias cnt='LC_ALL=C.UTF-8 sort | LC_ALL=C.UTF-8 uniq -c | LC_ALL=C.UTF-8 sort -rn' 
 
-alias vi="vim"
+alias vi="nvim"
+alias vim="nvim"
 
 # Global aliases
 alias -g ls='ls --color'
