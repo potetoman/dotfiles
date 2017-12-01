@@ -5,7 +5,7 @@ repo = 'Shougo/dein.vim'
 repo = 'itchyny/lightline.vim'
 hook_add = '''
     let g:lightline = {
-        \ 'colorscheme': 'solorized',
+        \ 'colorscheme': 'solarized',
         \ 'mode_map': {'c': 'NORMAL'},
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
@@ -18,7 +18,27 @@ hook_add = '''
         \   'fileformat': 'LightlineFileformat',
         \   'filetype': 'LightlineFiletype',
         \   'fileencoding': 'LightlineFileencoding',
-        \   'mode': 'LightlineMode'
+        \   'mode': 'LightlineMode',
+        \   'bufferinfo': 'lightline#buffer#bufferinfo'
+        \ },
+        \ 'tabline': {
+        \   'left': [ [ 'bufferinfo' ],
+        \             [ 'separator' ],
+        \             [ 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
+        \   'right': [ [ 'close' ], ],
+        \ },
+        \ 'component_expand': {
+        \   'buffercurrent': 'lightline#buffer#buffercurrent',
+        \   'bufferbefore': 'lightline#buffer#bufferbefore',
+        \   'bufferafter': 'lightline#buffer#bufferafter',
+        \ },
+        \ 'component_type': {
+        \   'buffercurrent': 'tabsel',
+        \   'bufferbefore': 'raw',
+        \   'bufferafter': 'raw',
+        \ },
+        \ 'component': {
+        \   'separator': '',
         \ }
         \ }
 
@@ -62,36 +82,15 @@ hook_add = '''
     function! LightlineMode()
         return winwidth(0) > 60 ? lightline#mode() : ''
     endfunction
-    let g:lightline = { 
-    \   'colorscheme': 'solarized'
-    \}
 '''
 
 [[plugins]]
 repo = 'taohex/lightline-buffer'
 hook_add = '''
-set hidden  " allow buffer switching without saving
-set showtabline=2  " always show tabline
+    set hidden  " allow buffer switching without saving
+    set showtabline=2  " always show tabline
 
-" use lightline-buffer in lightline
-let g:lightline = {
-    \ 'tabline': {
-        \ 'left': [ [ 'bufferinfo' ], [ 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
-        \ 'right': [ [ 'close' ], ],
-        \ },
-    \ 'component_expand': {
-        \ 'buffercurrent': 'lightline#buffer#buffercurrent2',
-        \ },
-    \ 'component_type': {
-        \ 'buffercurrent': 'tabsel',
-        \ },
-    \ 'component_function': {
-        \ 'bufferbefore': 'lightline#buffer#bufferbefore',
-        \ 'bufferafter': 'lightline#buffer#bufferafter',
-        \ 'bufferinfo': 'lightline#buffer#bufferinfo',
-        \ },
-    \ }
-
+    " use lightline-buffer in lightline
     " remap arrow keys
     nnoremap <Left> :bprev<CR>
     nnoremap <Right> :bnext<CR>
