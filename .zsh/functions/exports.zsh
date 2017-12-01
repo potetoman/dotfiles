@@ -19,3 +19,9 @@ export CLICOLOR=true
 
 # neovim home_path
 export XDG_CONFIG_HOME=$HOME/.config
+
+# server user's usr path
+export PATH="${HOME}/usr/bin:$PATH"
+
+# server user's neovim path
+export PATH="${HOME}/usr/local/neovim/bin:$PATH"

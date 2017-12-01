@@ -1,5 +1,5 @@
 " python path
-let g:python3_host_prog = expand('~/.pyenv/versions/anaconda3-4.2.0/bin/python')
+let g:python3_host_prog = expand('~/.pyenv/versions/anaconda3-4.0.0/bin/python')
 
 " dein settings
 

@@ -22,11 +22,6 @@ if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]
     zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
 fi
 
-# zsh color settings on GNU ls
-eval $(gdircolors ~/.dircolors/dircolors-solarized/dircolors.ansi-universal)
-if [ -n "$LS_COLORS" ]; then
-    zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-    
 # conda change
 if [ $(hostname) = "gunfire" ]; then
     source ${PYENV_ROOT}/versions/anaconda-4.0.0/bin/activate chainer_gunfire3
