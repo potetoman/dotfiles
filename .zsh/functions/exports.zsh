@@ -13,3 +13,6 @@ export CLICOLOR=true
 
 # neovim home_path
 export XDG_CONFIG_HOME=$HOME/.config
+
+# GO settings
+export GOPATH=$HOME/.go

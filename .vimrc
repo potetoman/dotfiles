@@ -359,9 +359,20 @@ else
     " let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
     " let g:PyFlakeDefaultComplexity=10
 
-    " NeoBundle 'scrooloose/syntastic'
-    " let g:syntastic_python_checkers = ['pyflakes']
+    NeoBundle 'scrooloose/syntastic'
+    let g:syntastic_python_checkers = ['pyflakes']
+    "
 
+    " ==============================
+    " Vim-Go
+    " ==============================
+
+    NeoBundleLazy 'fatih/vim-go', {
+            \ 'autoload' : { 'filetypes' : 'go'  }
+            \ }
+        let g:go_highlight_functions = 1
+        let g:go_highlight_methods = 1
+        let g:go_highlight_structs = 1
 
 
     " インストールされていないプラグインのチェックおよびダウンロード

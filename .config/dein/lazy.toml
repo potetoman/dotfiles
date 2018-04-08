@@ -38,35 +38,44 @@ on_ft = 'python'
 repo = 'vim-latex/vim-latex'
 on_ft = 'tex'
 hook_add = '''
-    filetype plugin on
-    filetype indent on
-    set shellslash
-    set grepprg=grep\ -nH\ $*
-    let g:tex_flavor='latex'
-    let g:Imap_UsePlaceHolders = 1
-    let g:Imap_DeleteEmptyPlaceHolders = 1
-    let g:Imap_StickyPlaceHolders = 0
-    let g:Tex_DefaultTargetFormat = 'pdf'
-    let g:Tex_MultipleCompileFormats='dvi,pdf'
-    "let g:Tex_FormatDependency_pdf = 'pdf'
-    let g:Tex_FormatDependency_pdf = 'dvi,pdf'
-    "let g:Tex_FormatDependency_pdf = 'dvi,ps,pdf'
-    let g:Tex_FormatDependency_ps = 'dvi,ps'
-    let g:Tex_CompileRule_pdf = 'ptex2pdf -u -l -ot "-kanji=utf8 -no-guess-input-enc -synctex=1 -interaction=nonstopmode -file-line-error-style" $*'
-    "let g:Tex_CompileRule_pdf = 'pdflatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
-    "let g:Tex_CompileRule_pdf = 'lualatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
-    "let g:Tex_CompileRule_pdf = 'luajitlatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
-    "let g:Tex_CompileRule_pdf = 'xelatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
-    "let g:Tex_CompileRule_pdf = 'ps2pdf.exe $*.ps'
-    let g:Tex_CompileRule_ps = 'dvips -Ppdf -o $*.ps $*.dvi'
-    let g:Tex_CompileRule_dvi = 'uplatex -kanji=utf8 -no-guess-input-enc -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
-    let g:Tex_BibtexFlavor = 'upbibtex'
-    let g:Tex_MakeIndexFlavor = 'upmendex $*.idx'
-    let g:Tex_ViewRule_pdf = 'rundll32 shell32,ShellExec_RunDLL SumatraPDF -reuse-instance -inverse-search "\"' . $VIM . '\gvim.exe\" -n -c \":RemoteOpen +\%l \%f\""'
-    "let g:Tex_ViewRule_pdf = 'texworks'
-    "let g:Tex_ViewRule_pdf = 'rundll32 shell32,ShellExec_RunDLL firefox -new-window'
-    "let g:Tex_ViewRule_pdf = 'powershell -Command "& {$p = [System.String]::Concat(''"""'',[System.IO.Path]::GetFullPath($args),''"""'');Start-Process chrome -ArgumentList (''--new-window'',$p)}"'
-    "let g:Tex_ViewRule_pdf = 'pdfopen --r15 --file'
+filetype plugin on
+filetype indent on
+set shellslash
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
+let g:Imap_UsePlaceHolders = 1
+let g:Imap_DeleteEmptyPlaceHolders = 1
+let g:Imap_StickyPlaceHolders = 0
+let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_MultipleCompileFormats='dvi,pdf'
+"let g:Tex_FormatDependency_pdf = 'pdf'
+let g:Tex_FormatDependency_pdf = 'dvi,pdf'
+let g:Tex_CompileRule_pdf = 'ptex2pdf -u -l -ot "-synctex=1 -interaction=nonstopmode -file-line-error-style" $*'
+"let g:Tex_CompileRule_pdf = 'lualatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
+let g:Tex_CompileRule_dvi = 'uplatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
+let g:Tex_BibtexFlavor = 'upbibtex'
+let g:Tex_MakeIndexFlavor = 'upmendex $*.idx'
+let g:Tex_UseEditorSettingInDVIViewer = 1
+let g:Tex_ViewRule_pdf = 'PDF\ expert'
+"let g:Tex_ViewRule_pdf = 'open -a Skim'
+"let g:Tex_ViewRule_pdf = 'open -a Preview'
+"let g:Tex_ViewRule_pdf = 'open -a TeXShop'
+"let g:Tex_ViewRule_pdf = '/Applications/TeXworks.app/Contents/MacOS/TeXworks'
+"let g:Tex_ViewRule_pdf = '/Applications/texstudio.app/Contents/MacOS/texstudio --pdf-viewer-only'
+"let g:Tex_ViewRule_pdf = 'open -a Firefox'
+"let g:Tex_ViewRule_pdf = 'open -a "Adobe Acrobat Reader DC"'
+"let g:Tex_ViewRule_pdf = 'open'
+let g:Tex_IgnoreLevel = 9 
+let g:Tex_IgnoredWarnings = 
+    \"Underfull\n".
+    \"Overfull\n".
+    \"specifier changed to\n".
+    \"You have requested\n".
+    \"Missing number, treated as zero.\n".
+    \"There were undefined references\n".
+    \"Citation %.%# undefined\n".
+    \"LaTeX Font Warning: Font shape `%s' undefined\n".
+    \"LaTeX Font Warning: Some font shapes were not available, defaults substituted."
 '''
 
 [[plugins]]
@@ -75,3 +84,11 @@ hook_add = '''
     nnoremap <silent>,e :NERDTreeToggle<CR>
 '''
 
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'tex'
+hook_add = '''
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_structs = 1
+'''
