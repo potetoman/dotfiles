@@ -181,3 +181,6 @@ tnoremap <silent> <ESC> <C-\><C-n>
 " https://hori-ryota.com/blog/neovim-fix-input-broken-ttimeout/
 set ttimeout
 set ttimeoutlen=50
+
+" 自動保存
+set autowrite

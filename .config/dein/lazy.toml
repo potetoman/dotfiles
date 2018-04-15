@@ -19,6 +19,18 @@ hook_add = '''
 [[plugins]] # Golang
 repo = 'fatih/vim-go'
 on_ft = 'go'
+hook_add = '''
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_structs = 1
+    let g:syntastic_go_checkers = ['govet', 'errcheck', 'go']
+    let g:go_fmt_command = "goimports"
+    nnoremap <silent>,a :cclose<CR>
+    autocmd FileType go nmap <silent>,b <Plug>(go-build)
+    autocmd FileType go nmap <silent>,r <Plug>(go-run)
+    autocmd FileType go nmap <silent>,t <Plug>(go-run)
+    autocmd FileType go nmap <silent>,c <Plug>(go-coverage-toggle)
+'''
 
 [[plugins]] # Python
 repo = 'davidhalter/jedi-vim'
@@ -31,6 +43,15 @@ hook_add = '''
 repo = 'zchee/deoplete-jedi'
 on_i = 1
 on_ft = 'python'
+
+[[plugins]]
+repo = 'zchee/deoplete-go'
+build = 'make'
+on_ft = 'go'
+depends = ['deoplete.nvim']
+hook_add = '''
+    let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+'''
 
 # latex
 
@@ -84,11 +105,3 @@ hook_add = '''
     nnoremap <silent>,e :NERDTreeToggle<CR>
 '''
 
-[[plugins]]
-repo = 'fatih/vim-go'
-on_ft = 'tex'
-hook_add = '''
-    let g:go_highlight_functions = 1
-    let g:go_highlight_methods = 1
-    let g:go_highlight_structs = 1
-'''
