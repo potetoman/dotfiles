@@ -1,0 +1,130 @@
+" ============================
+" Vim settings http://lambdalisue.hatenablog.com/entry/2013/06/23/071344
+" ============================
+
+" powerline
+
+" release autogroup in MyAutoCmd
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
+
+" =検索関係=
+set ignorecase          " 大文字小文字を区別しない
+set smartcase           " 検索文字に大文字がある場合は大文字小文字を区別
+set incsearch           " インクリメンタルサーチ
+set hlsearch            " 検索マッチテキストをハイライト (2013-07-03 14:30 修正）
+
+" =編集関係=
+set shiftround          " '<'や'>'でインデントする際に'shiftwidth'の倍数に丸める
+set infercase           " 補完時に大文字小文字を区別しない
+set virtualedit=all     " カーソルを文字が存在しない部分でも動けるようにする
+set hidden              " バッファを閉じる代わりに隠す（Undo履歴を残すため）
+set switchbuf=useopen   " 新しく開く代わりにすでに開いてあるバッファを開く
+set showmatch           " 対応する括弧などをハイライト表示する
+set matchtime=3         " 対応括弧のハイライト表示を3秒にする
+
+"yankでクリップボードにコピー
+set clipboard=unnamed,autoselect
+"tabサイズを4に
+set tabstop=4
+set autoindent
+set expandtab
+set shiftwidth=4
+" 対応括弧に'<'と'>'のペアを追加
+set matchpairs& matchpairs+=<:>
+
+" バックスペースでなんでも消せるようにする
+set backspace=indent,eol,start
+
+" Swapファイル？Backupファイル？前時代的すぎ
+" なので全て無効化する
+set nowritebackup
+set nobackup
+set noswapfile
+
+"  =表示関係=
+set list                " 不可視文字の可視化
+set number              " 行番号の表示
+syntax on               " 構文色付け
+set wrap                " 長いテキストの折り返し
+set textwidth=0         " 自動的に改行が入るのを無効化
+set colorcolumn=80      " その代わり80文字目にラインを入れる
+
+" 前時代的スクリーンベルを無効化
+set t_vb=
+set novisualbell
+
+" Shitf hlで先端or終わり
+noremap <S-h>   ^
+noremap <S-l>   $
+
+" デフォルト不可視文字は美しくないのでUnicodeで綺麗に
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
+
+" =マクロおよびキー設定=
+" 入力モード中に素早くjjと入力した場合はESCとみなす
+inoremap jj <Esc>
+
+" ESCを二回押すことでハイライトを消す
+nmap <silent> <Esc><Esc> :nohlsearch<CR>
+
+" 検索後にジャンプした際に検索単語を画面中央に持ってくる
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
+" j, k による移動を折り返されたテキストでも自然に振る舞うように変更
+nnoremap j gj
+nnoremap k gk
+
+" vを二回で行末まで選択
+vnoremap v $h
+
+" TABにて対応ペアにジャンプ
+nnoremap <Tab> %
+vnoremap <Tab> %
+
+" Ctrl + hjkl でウィンドウ間を移動
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+" :e などでファイルを開く際にフォルダが存在しない場合は自動作成
+function! s:mkdir(dir, force)
+  if !isdirectory(a:dir) && (a:force ||
+        \ input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
+    call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+  endif
+endfunction
+autocmd MyAutoCmd BufWritePre * call s:mkdir(expand('<afile>:p:h'), v:cmdbang)
+
+" vim 起動時のみカレントディレクトリを開いたファイルの親ディレクトリに指定
+autocmd MyAutoCmd VimEnter * call s:ChangeCurrentDir('', '')
+function! s:ChangeCurrentDir(directory, bang)
+    if a:directory == ''
+        lcd %:p:h
+    else
+        execute 'lcd' . a:directory
+    endif
+
+    if a:bang == ''
+        pwd
+    endif
+endfunction
+
+" ノーマルモード時だけ ; と : を入れ替える
+nnoremap ; :
+nnoremap : ;
+
+" escape2回でhighlight消す
+nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
+
+"=========================
+" Vim settings End
+"=========================
+
