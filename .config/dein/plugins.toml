@@ -137,17 +137,17 @@ hook_add = '''
     let g:template_free_pattern = 'template'
 '''
 
-[[plugins]]
-repo = 'SirVer/ultisnips'
-hook_add = '''
-    " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-    let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<c-b>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-    " If you want :UltiSnipsEdit to split your window.
-    let g:UltiSnipsEditSplit="vertical"
-'''
+# [[plugins]]
+# repo = 'SirVer/ultisnips'
+# hook_add = '''
+#     " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+#     let g:UltiSnipsExpandTrigger="<tab>"
+#     let g:UltiSnipsJumpForwardTrigger="<c-b>"
+#     let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+# 
+#     " If you want :UltiSnipsEdit to split your window.
+#     let g:UltiSnipsEditSplit="vertical"
+# '''
 
 [[plugins]]
 repo = 'honza/vim-snippets'
