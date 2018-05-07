@@ -291,8 +291,7 @@ else
       " gundoと被るため大文字に変更 (2013-06-24 10:00 追記）
       let g:jedi#goto_assighmentd_command = '<Leader>G'
     endfunction
-    "solarized"
-    NeoBundle 'altercation/vim-colors-solarized'
+    "
     "Vim-Latex
     NeoBundle "https://github.com/vim-latex/vim-latex.git"
     filetype plugin on
@@ -375,12 +374,14 @@ else
         let g:go_highlight_structs = 1
 
 
+    " NeoBundle 'altercation/vim-colors-solarized'
+    " let g:solarized_termtrans=1
+    " set background=dark
+    " colorscheme solarized
+
     " インストールされていないプラグインのチェックおよびダウンロード
     NeoBundleCheck
     call neobundle#end()
-    "NeoBundle 'altercation/vim-colors-solarized'
-    "let g:solarized_termtrans=1
-    "colorscheme solarized
 
 endif
 
@@ -393,11 +394,6 @@ filetype plugin indent on
 "=========================
 " NeoBundle settings End
 "=========================
-
-"solarized
-set background=dark
-let g:solarized_termtrans=1
-colorscheme solarized
 
  " Powerline
 let g:Powerline_symbols = 'fancy'
