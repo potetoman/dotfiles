@@ -1,15 +1,3 @@
-" ============================
-" Vim settings http://lambdalisue.hatenablog.com/entry/2013/06/23/071344
-" ============================
-
-" powerline
-
-" release autogroup in MyAutoCmd
-augroup MyAutoCmd
-  autocmd!
-augroup END
-
-
 " =検索関係=
 set ignorecase          " 大文字小文字を区別しない
 set smartcase           " 検索文字に大文字がある場合は大文字小文字を区別
@@ -60,23 +48,9 @@ set novisualbell
 noremap <S-h>   ^
 noremap <S-l>   $
 
-" デフォルト不可視文字は美しくないのでUnicodeで綺麗に
-set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
-
 " =マクロおよびキー設定=
 " 入力モード中に素早くjjと入力した場合はESCとみなす
 inoremap jj <Esc>
-
-" ESCを二回押すことでハイライトを消す
-nmap <silent> <Esc><Esc> :nohlsearch<CR>
-
-" 検索後にジャンプした際に検索単語を画面中央に持ってくる
-nnoremap n nzz
-nnoremap N Nzz
-nnoremap * *zz
-nnoremap # #zz
-nnoremap g* g*zz
-nnoremap g# g#zz
 
 " j, k による移動を折り返されたテキストでも自然に振る舞うように変更
 nnoremap j gj
@@ -94,37 +68,76 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-" :e などでファイルを開く際にフォルダが存在しない場合は自動作成
-function! s:mkdir(dir, force)
-  if !isdirectory(a:dir) && (a:force ||
-        \ input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
-    call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
-  endif
-endfunction
-autocmd MyAutoCmd BufWritePre * call s:mkdir(expand('<afile>:p:h'), v:cmdbang)
-
-" vim 起動時のみカレントディレクトリを開いたファイルの親ディレクトリに指定
-autocmd MyAutoCmd VimEnter * call s:ChangeCurrentDir('', '')
-function! s:ChangeCurrentDir(directory, bang)
-    if a:directory == ''
-        lcd %:p:h
-    else
-        execute 'lcd' . a:directory
-    endif
-
-    if a:bang == ''
-        pwd
-    endif
-endfunction
-
+"
 " ノーマルモード時だけ ; と : を入れ替える
 nnoremap ; :
 nnoremap : ;
 
-" escape2回でhighlight消す
-nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
+" refered IdeaVIMのキーバインドを考える 
+" https://qiita.com/sei40kr/items/09e7e92eb7686f9b5950#ide%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E5%91%BC%E3%81%B3%E5%87%BA%E3%81%99
 
-"=========================
-" Vim settings End
-"=========================
+" emulate vim-srround
+set surround
+
+" Find using IDE
+nnoremap / :<C-u>action Find<CR>
+
+" code jump
+nnoremap <C-o> :<C-u>action Back<CR>
+nnoremap <C-i> :<C-u>action Forward<CR>
+nnoremap <C-S-o> <C-o>
+nnoremap <C-S-i> <C-i>
+
+" method jump
+nnoremap [m :<C-u>action MethodUp<CR>
+nnoremap ]m :<C-u>action MethodDown<CR>
+
+" jump changed
+nnoremap [c :<C-u>action VcsShowPrevChangeMarker<CR>
+nnoremap ]c :<C-u>action VcsShowNextChangeMarker<CR>
+
+" jump error
+nnoremap [e :<C-u>action GotoPreviousError<CR>
+nnoremap ]e :<C-u>action GotoNextError<CR>
+
+" add blank line
+nnoremap [<Space> O<Esc>j
+nnoremap ]<Space> o<Esc>k
+
+" tag jump
+nnoremap K :<C-u>action QuickJavaDoc<CR>
+nnoremap gjK :<C-u>action GotoDeclaration<CR>
+nnoremap gjk :<C-u>action GotoTypeDeclaration<CR>
+nnoremap gji :<C-u>action GotoImplementation<CR>
+nnoremap gjs :<C-u>action GotoSuperMethod<CR>
+nnoremap gjt :<C-u>action GotoTest<CR>
+nnoremap <C-k> :<C-u>action ShowUsages<CR>
+
+" short cut
+nnoremap <Space>a :<C-u>action GotoAction<CR>
+nnoremap <Space>G :<C-u>action Generate<CR>
+nnoremap <Space>gn :<C-u>action NewClass<CR>
+nnoremap <Space>go :<C-u>action OverrideMethods<CR>
+nnoremap <Space>gc :<C-u>action GenerateConstructor<CR>
+nnoremap <Space>gg :<C-u>action GenerateGetter<CR>
+nnoremap <Space>gs :<C-u>action GenerateSetter<CR>
+nnoremap <Space>ga :<C-u>action GenerateGetterAndSetter<CR>
+nnoremap <Space>ge :<C-u>action GenerateEquals<CR>
+nnoremap <Space>gt :<C-u>action GenerateTestMethod<CR>
+nnoremap <Space>= :<C-u>action ReformatCode<CR>
+nnoremap <Space>o :<C-u>action FileStructurePopup<CR>
+nnoremap <Space>q :<C-u>action CloseContent<CR>
+nnoremap <Space>Q :<C-u>action ReopenClosedTab<CR>
+nnoremap <Space>e :<C-u>action SearchEverywhere<CR>
+nnoremap <Space>f :<C-u>action GotoFile<CR>
+nnoremap <Space>F :<C-u>action FindInPath<CR>
+nnoremap <Space>s :<C-u>action GotoClass<CR>
+nnoremap <Space>S :<C-u>action GotoSymbol<CR>
+nnoremap <Space>t :<C-u>action ActivateTerminalToolWindow<CR>
+nnoremap <Space>P :<C-u>action ManageRecentProjects<CR>
+nnoremap <Space>b :<C-u>action ToggleLineBreakpoint<CR>
+
+nnoremap <Space>r :<C-u>action Run<CR>
+nnoremap <Space>d :<C-u>action Debug<CR>
+nnoremap <Space>d :<C-u>action RefactoringMenu<CR>
 
