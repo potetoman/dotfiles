@@ -80,7 +80,7 @@ nnoremap : ;
 set surround
 
 " Find using IDE
-nnoremap / :<C-u>action Find<CR>
+nnoremap <C-/> :<C-u>action Find<CR>
 
 " code jump
 nnoremap <C-o> :<C-u>action Back<CR>
@@ -136,8 +136,4 @@ nnoremap <Space>S :<C-u>action GotoSymbol<CR>
 nnoremap <Space>t :<C-u>action ActivateTerminalToolWindow<CR>
 nnoremap <Space>P :<C-u>action ManageRecentProjects<CR>
 nnoremap <Space>b :<C-u>action ToggleLineBreakpoint<CR>
-
-nnoremap <Space>r :<C-u>action Run<CR>
-nnoremap <Space>d :<C-u>action Debug<CR>
-nnoremap <Space>d :<C-u>action RefactoringMenu<CR>
 
