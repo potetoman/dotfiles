@@ -1,5 +1,6 @@
 # Common aliases
 alias ..='cd ..'
+alias ls='ls --color'
 alias ld='ls -ld'          # Show info about the directory
 alias lla='ls -lAF'        # Show hidden all files
 alias ll='ls -lF'          # Show long file information
@@ -15,7 +16,7 @@ alias diff='diff -u'
 alias cnt='LC_ALL=C.UTF-8 sort | LC_ALL=C.UTF-8 uniq -c | LC_ALL=C.UTF-8 sort -rn' 
 
 # Global aliases
-alias -g ls='ls --color'
+# alias -g ls='ls --color'
 alias -g cd=cdr
 alias -g cd=cdr "$@" && ls
 alias -g N=" >/dev/null 2>&1"
